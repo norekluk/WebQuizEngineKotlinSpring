@@ -1,6 +1,5 @@
 package engine.service
 
-import engine.data.AnswerResult
 import engine.data.Quiz
 import engine.repository.WebQuizRepository
 import org.springframework.stereotype.Service
