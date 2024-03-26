@@ -2,27 +2,25 @@ package engine.service
 
 import engine.data.AnswerResult
 import engine.data.Quiz
+import engine.repository.WebQuizRepository
 import org.springframework.stereotype.Service
 
 
 @Service
-class WebQuizService {
+class WebQuizService(val repository: WebQuizRepository) {
 
-    private val quiz = Quiz(
-        title = "The Java Logo",
-        text = "What is depicted on the Java logo?",
-        options = listOf("Robot", "Tea leaf", "Cup of coffee", "Bug")
-    )
-
-    fun getQuiz(): Quiz {
-        return quiz
+    fun createQuiz(quiz: Quiz): Int {
+        return repository.addQuiz(quiz)
+    }
+    fun getQuizById(id: Int): Quiz {
+        return repository.getQuiz(id)
     }
 
-    fun getAnswerResult(answer: Int): AnswerResult {
-        return if (answer == 2) {
-            AnswerResult.SUCCESS
-        } else {
-            AnswerResult.FAILURE
-        }
+    fun getQuizzes(): List<Quiz> {
+        return repository.getQuizzes()
+    }
+
+    fun solveQuiz(quizId: Int, answer: Int): Boolean {
+        return repository.getQuiz(quizId).answer == answer
     }
 }

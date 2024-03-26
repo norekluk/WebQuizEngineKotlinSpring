@@ -6,5 +6,4 @@ data class AnswerResult(val success: Boolean, val feedback: String) {
         val SUCCESS: AnswerResult = AnswerResult(true, "Congratulations, you're right!")
         val FAILURE: AnswerResult = AnswerResult(false, "Wrong answer! Please, try again.")
     }
-
 }
